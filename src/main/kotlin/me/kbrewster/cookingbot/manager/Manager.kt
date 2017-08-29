@@ -1,58 +1,21 @@
 package me.kbrewster.cookingbot.manager
 
-import java.util.ArrayList
-import java.util.Arrays
-
-
 class Manager<T> {
 
+    var values: ArrayList<T> = ArrayList<T>()
 
-    /**
-     * The list of all of the entries that this Manager contains
-     */
-    private val data = ArrayList<T>()
+    infix fun addValues(value: List<T>) = this.values.addAll(value)
 
+    fun addValues(vararg value: T) = this.values.addAll(value)
 
-    /**
-     * Resets all of the data in this manager
-     */
-    fun reset() {
-        this.data.clear()
-    }
+    infix fun addValue(value: T) = this.values.add(value)
 
-    /**
-     * Adds multiple entries into the data array
-     *
-     * @param data The entries
-     */
-    @SafeVarargs
-    protected fun addData(vararg data: T) {
-        this.data.addAll(Arrays.asList(*data))
-    }
+    fun clearValue() = this.values.clear()
 
-    /**
-     * Adds a list of entries into the data array
-     *
-     * @param data The entries
-     */
-    protected fun addData(data: List<T>) {
-        this.data.addAll(data)
-    }
+    infix fun removeValue(index: Int) = this.values.remove(values.elementAt(index))
 
-    /**
-     * Removes an entry, if present, from the data array
-     *
-     * @param data The entry
-     */
-    protected fun removeData(data: T) {
-        this.data.remove(data)
-    }
+    infix fun getValue(index: Int): T = this.values[index]
 
+    infix fun getValue(type: T): T = getValue(this.values.indexOf(type))
 
-    /**
-     * @return All of the entries that this manager holds
-     */
-    fun getData(): List<T> {
-        return ArrayList(this.data)
-    }
 }

@@ -7,6 +7,10 @@ enum class Config(var value: Any) {
     TOKEN("/"),
     PREFIX("/");
 
+    /**
+     * Terrible Configruation System
+     * TODO: Switch over to JSON :)
+     */
     companion object {
 
         private val fileName: String = "bot.properties"
@@ -19,9 +23,6 @@ enum class Config(var value: Any) {
             }
         }
 
-        /**
-         * Works but needs major improvement lol
-         */
         fun load() {
             if (file.isFile) {
                 file.readLines().forEach {
